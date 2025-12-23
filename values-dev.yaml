@@ -44,14 +44,3 @@ service:
   apiGateway:
     port: 8080
     nodePort: 30080
-  zipkin:
-    port: 9411
-    nodePort: 30084
-  prometheus:
-    port: 9090
-    nodePort: 30093
-  grafana:
-    port: 3000
-    nodePort: 30096
-loki:
-  namespace: dev
