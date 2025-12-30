@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: mtls-destination-rule
+  namespace: {{ .Release.Namespace }}
+spec:
+  host: "*.{{ .Release.Namespace }}.svc.cluster.local"
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
