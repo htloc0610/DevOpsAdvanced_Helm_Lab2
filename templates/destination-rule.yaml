@@ -1,89 +1,10 @@
-{{- $namespace := .Release.Namespace }}
----
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: api-gateway-mtls
-  namespace: {{ $namespace }}
+  name: default-mtls
+  namespace: {{ .Release.Namespace }}
 spec:
-  host: api-gateway.{{ $namespace }}.svc.cluster.local
+  host: "*.{{ .Release.Namespace }}.svc.cluster.local"
   trafficPolicy:
     tls:
-      mode: ISTIO_MUTUAL
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: discovery-server-mtls
-  namespace: {{ $namespace }}
-spec:
-  host: discovery-server.{{ $namespace }}.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: customers-service-mtls
-  namespace: {{ $namespace }}
-spec:
-  host: customers-service.{{ $namespace }}.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: vets-service-mtls
-  namespace: {{ $namespace }}
-spec:
-  host: vets-service.{{ $namespace }}.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: visits-service-mtls
-  namespace: {{ $namespace }}
-spec:
-  host: visits-service.{{ $namespace }}.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: genai-service-mtls
-  namespace: {{ $namespace }}
-spec:
-  host: genai-service.{{ $namespace }}.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: admin-server-mtls
-  namespace: {{ $namespace }}
-spec:
-  host: admin-server.{{ $namespace }}.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: config-server-mtls
-  namespace: {{ $namespace }}
-spec:
-  host: config-server.{{ $namespace }}.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
+      mode: DISABLE
