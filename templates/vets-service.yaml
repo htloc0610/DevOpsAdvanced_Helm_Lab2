@@ -54,5 +54,6 @@ spec:
   selector:
     app: vets-service
   ports:
-    - port: {{ .Values.service.vetsService.port }}
+    - name: http
+      port: {{ .Values.service.vetsService.port }}
       targetPort: {{ .Values.service.vetsService.port }}

@@ -49,5 +49,6 @@ spec:
   selector:
     app: customers-service
   ports:
-    - port: {{ .Values.service.customersService.port }}
+    - name: http
+      port: {{ .Values.service.customersService.port }}
       targetPort: {{ .Values.service.customersService.port }}

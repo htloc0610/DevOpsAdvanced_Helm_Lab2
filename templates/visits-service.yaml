@@ -49,5 +49,6 @@ spec:
   selector:
     app: visits-service
   ports:
-    - port: {{ .Values.service.visitsService.port }}
+    - name: http
+      port: {{ .Values.service.visitsService.port }}
       targetPort: {{ .Values.service.visitsService.port }}

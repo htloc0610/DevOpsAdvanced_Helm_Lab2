@@ -40,7 +40,8 @@ spec:
   selector:
     app: discovery-server
   ports:
-    - port: {{ .Values.service.discoveryServer.port }}
+    - name: http
+      port: {{ .Values.service.discoveryServer.port }}
       targetPort: {{ .Values.service.discoveryServer.port }}
       nodePort: {{ .Values.service.discoveryServer.nodePort }}
   type: NodePort

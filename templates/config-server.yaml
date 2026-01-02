@@ -38,7 +38,8 @@ spec:
   selector:
     app: config-server
   ports:
-    - port: {{ .Values.service.configServer.port }}
+    - name: http
+      port: {{ .Values.service.configServer.port }}
       targetPort: {{ .Values.service.configServer.port }}
       nodePort: {{ .Values.service.configServer.nodePort }}
   type: NodePort

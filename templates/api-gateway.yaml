@@ -47,7 +47,8 @@ spec:
   selector:
     app: api-gateway
   ports:
-    - port: {{ .Values.service.apiGateway.port }}
+    - name: http
+      port: {{ .Values.service.apiGateway.port }}
       targetPort: {{ .Values.service.apiGateway.port }}
       nodePort: {{ .Values.service.apiGateway.nodePort }}
   type: NodePort

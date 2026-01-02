@@ -55,5 +55,6 @@ spec:
   selector:
     app: genai-service
   ports:
-    - port: {{ .Values.service.genaiService.port }}
+    - name: http
+      port: {{ .Values.service.genaiService.port }}
       targetPort: {{ .Values.service.genaiService.port }}
