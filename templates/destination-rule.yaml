@@ -4,7 +4,7 @@ metadata:
   name: default-mtls
   namespace: {{ .Release.Namespace }}
 spec:
-  host: "*.{{ .Release.Namespace }}.svc.cluster.local"
+  host: "*"
   trafficPolicy:
     tls:
       mode: ISTIO_MUTUAL
