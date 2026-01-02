@@ -12,6 +12,8 @@ spec:
     metadata:
       labels:
         app: config-server
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
       containers:
         - name: config-server
@@ -25,10 +27,6 @@ spec:
               value: config-server
             - name: SPRING_APPLICATION_INSTANCE_ID
               value: config-server:${HOSTNAME}
-            - name: EUREKA_INSTANCE_HOSTNAME
-              value: config-server
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
 ---
 apiVersion: v1
 kind: Service

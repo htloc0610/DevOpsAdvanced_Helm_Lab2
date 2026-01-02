@@ -3,9 +3,6 @@ image:
   apiGateway:
     repository: anwirisme/spring-petclinic-api-gateway
     tag: main
-  discoveryServer:
-    repository: anwirisme/spring-petclinic-discovery-server
-    tag: main
   customersService:
     repository: anwirisme/spring-petclinic-customers-service
     tag: main
@@ -25,8 +22,6 @@ image:
     repository: anwirisme/spring-petclinic-config-server
     tag: main
 service:
-  discoveryServer:
-    port: 8761
   customersService:
     port: 8081
   vetsService:

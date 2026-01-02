@@ -12,14 +12,9 @@ spec:
     metadata:
       labels:
         app: visits-service
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
-      initContainers:
-        - name: wait-for-discovery-server
-          image: busybox
-          command:
-            - "sh"
-            - "-c"
-            - "until nc -z -v -w30 discovery-server {{ .Values.service.discoveryServer.port }}; do echo waiting for discovery-server; sleep 2; done;"
       containers:
         - name: visits-service
           image: "{{ .Values.image.visitsService.repository }}:{{ .Values.image.visitsService.tag }}"
@@ -28,8 +23,6 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: docker
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
             - name: SPRING_ZIPKIN_TRACING_ENDPOINT
               value: http://tracing-server:9411/api/v2/spans
             - name: SPRING_APPLICATION_NAME
@@ -38,8 +31,6 @@ spec:
               value: ${spring.application.name}:${random.uuid}
             - name: CONFIG_SERVER_URL
               value: http://config-server:{{ .Values.service.configServer.port }}
-            - name: EUREKA_INSTANCE_HOSTNAME
-              value: visits-service
 ---
 apiVersion: v1
 kind: Service

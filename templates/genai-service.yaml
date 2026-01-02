@@ -12,14 +12,9 @@ spec:
     metadata:
       labels:
         app: genai-service
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
-      initContainers:
-        - name: wait-for-discovery-server
-          image: busybox
-          command:
-            - "sh"
-            - "-c"
-            - "until nc -z -v -w30 discovery-server {{ .Values.service.discoveryServer.port }}; do echo waiting for discovery-server; sleep 2; done;"
       containers:
         - name: genai-service
           image: "{{ .Values.image.genaiService.repository }}:{{ .Values.image.genaiService.tag }}"
@@ -28,8 +23,6 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: docker
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
             - name: SPRING_ZIPKIN_TRACING_ENDPOINT
               value: http://tracing-server:9411/api/v2/spans
             - name: SPRING_APPLICATION_NAME
@@ -44,8 +37,7 @@ spec:
               value: ${AZURE_OPENAI_ENDPOINT:http://default-azure-endpoint}
             - name: OPENAI_API_KEY
               value: test
-            - name: EUREKA_INSTANCE_HOSTNAME
-              value: genai-service
+
 ---
 apiVersion: v1
 kind: Service

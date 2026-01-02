@@ -12,14 +12,9 @@ spec:
     metadata:
       labels:
         app: admin-server
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
-      initContainers:
-        - name: wait-for-discovery-server
-          image: busybox
-          command:
-            - "sh"
-            - "-c"
-            - "until nc -z -v -w30 discovery-server {{ .Values.service.discoveryServer.port }}; do echo waiting for discovery-server; sleep 2; done;"
       containers:
         - name: admin-server
           image: "{{ .Values.image.adminServer.repository }}:{{ .Values.image.adminServer.tag }}"
@@ -28,16 +23,12 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: docker
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
             - name: SPRING_APPLICATION_NAME
               value: admin-server
             - name: SPRING_APPLICATION_INSTANCE_ID
               value: admin-server:${HOSTNAME}
             - name: CONFIG_SERVER_URL
               value: http://config-server:{{ .Values.service.configServer.port }}
-            - name: EUREKA_INSTANCE_HOSTNAME
-              value: admin-server
 ---
 apiVersion: v1
 kind: Service
