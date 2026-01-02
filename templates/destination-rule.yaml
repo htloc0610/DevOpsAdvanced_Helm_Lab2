@@ -7,4 +7,4 @@ spec:
   host: "*"
   trafficPolicy:
     tls:
-      mode: ISTIO_MUTUAL
+      mode: DISABLE
