@@ -6,8 +6,29 @@ metadata:
 spec:
   mtls:
     mode: STRICT
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: api-gateway-policy
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
   portLevelMtls:
     8080:
-      mode: PERMISSIVE # API Gateway
+      mode: PERMISSIVE
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: config-server-policy
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: config-server
+  portLevelMtls:
     8888:
-      mode: PERMISSIVE # Config Server
+      mode: PERMISSIVE
