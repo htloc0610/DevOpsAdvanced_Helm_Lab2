@@ -17,6 +17,7 @@ spec:
       containers:
         - name: visits-service
           image: "{{ .Values.image.visitsService.repository }}:{{ .Values.image.visitsService.tag }}"
+          imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.service.visitsService.port }}
           env:

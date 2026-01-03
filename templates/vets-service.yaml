@@ -17,6 +17,7 @@ spec:
       containers:
         - name: vets-service
           image: "{{ .Values.image.vetsService.repository }}:{{ .Values.image.vetsService.tag }}"
+          imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.service.vetsService.port }}
           env:

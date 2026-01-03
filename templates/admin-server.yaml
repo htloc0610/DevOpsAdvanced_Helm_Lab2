@@ -17,6 +17,7 @@ spec:
       containers:
         - name: admin-server
           image: "{{ .Values.image.adminServer.repository }}:{{ .Values.image.adminServer.tag }}"
+          imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.service.adminServer.port }}
           env:
