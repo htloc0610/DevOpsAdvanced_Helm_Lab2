@@ -19,7 +19,7 @@ spec:
       containers:
         - name: config-server
           image: "{{ .Values.image.configServer.repository }}:{{ .Values.image.configServer.tag }}"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.service.configServer.port }}
           env:
