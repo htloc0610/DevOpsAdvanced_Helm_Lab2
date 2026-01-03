@@ -18,9 +18,6 @@ image:
   genaiService:
     repository: anwirisme/spring-petclinic-genai-service
     tag: v1.1.0
-  adminServer:
-    repository: anwirisme/spring-petclinic-admin-server
-    tag: v1.1.0
   configServer:
     repository: anwirisme/spring-petclinic-config-server
     tag: v1.1.0
@@ -33,9 +30,6 @@ service:
     port: 8082
   genaiService:
     port: 8084
-  adminServer:
-    port: 9090
-    nodePort: 31091
   configServer:
     port: 8888
     nodePort: 31089

@@ -9,7 +9,5 @@ spec:
   portLevelMtls:
     8080:
       mode: PERMISSIVE # API Gateway
-    9090:
-      mode: PERMISSIVE # Admin Server
     8888:
       mode: PERMISSIVE # Config Server
