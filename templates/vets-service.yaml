@@ -16,6 +16,7 @@ spec:
         app: vets-service
         sidecar.istio.io/inject: "true"
     spec:
+      serviceAccountName: vets-service
       containers:
         - name: vets-service
           image: "{{ .Values.image.vetsService.repository }}:{{ .Values.image.vetsService.tag }}"

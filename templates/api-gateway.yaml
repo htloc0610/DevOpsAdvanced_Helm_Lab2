@@ -16,6 +16,7 @@ spec:
         app: api-gateway
         sidecar.istio.io/inject: "true"
     spec:
+      serviceAccountName: api-gateway
       containers:
         - name: api-gateway
           image: "{{ .Values.image.apiGateway.repository }}:{{ .Values.image.apiGateway.tag }}"

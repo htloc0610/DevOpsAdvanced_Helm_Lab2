@@ -16,6 +16,7 @@ spec:
         app: genai-service
         sidecar.istio.io/inject: "true"
     spec:
+      serviceAccountName: genai-service
       containers:
         - name: genai-service
           image: "{{ .Values.image.genaiService.repository }}:{{ .Values.image.genaiService.tag }}"

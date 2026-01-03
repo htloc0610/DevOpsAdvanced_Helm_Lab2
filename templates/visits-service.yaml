@@ -16,6 +16,7 @@ spec:
         app: visits-service
         sidecar.istio.io/inject: "true"
     spec:
+      serviceAccountName: visits-service
       containers:
         - name: visits-service
           image: "{{ .Values.image.visitsService.repository }}:{{ .Values.image.visitsService.tag }}"

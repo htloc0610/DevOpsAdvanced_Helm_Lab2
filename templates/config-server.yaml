@@ -16,6 +16,7 @@ spec:
         app: config-server
         sidecar.istio.io/inject: "true"
     spec:
+      serviceAccountName: config-server
       containers:
         - name: config-server
           image: "{{ .Values.image.configServer.repository }}:{{ .Values.image.configServer.tag }}"

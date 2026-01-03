@@ -16,6 +16,7 @@ spec:
         app: customers-service
         sidecar.istio.io/inject: "true"
     spec:
+      serviceAccountName: customers-service
       containers:
         - name: customers-service
           image: "{{ .Values.image.customersService.repository }}:{{ .Values.image.customersService.tag }}"
