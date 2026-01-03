@@ -1,14 +1,10 @@
-# DestinationRule with wildcard host (*) is not recommended
-# mTLS is already configured via PeerAuthentication
-# If you need specific traffic policies for services, create individual DestinationRules
-#
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: default-mtls
   namespace: {{ .Release.Namespace }}
 spec:
-  host: "*"
+  host: "*.{{ .Release.Namespace }}.svc.cluster.local"
   trafficPolicy:
     tls:
       mode: ISTIO_MUTUAL
