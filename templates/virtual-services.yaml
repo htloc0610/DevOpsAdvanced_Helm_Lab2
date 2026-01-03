@@ -6,7 +6,12 @@ spec:
   hosts:
     - customers-service
   http:
-    - route:
+    - fault:
+        abort:
+          httpStatus: 500
+          percentage:
+            value: 50
+      route:
         - destination:
             host: customers-service
       retries:
