@@ -10,6 +10,8 @@ spec:
       app: visits-service
   template:
     metadata:
+      annotations:
+        proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
       labels:
         app: visits-service
         sidecar.istio.io/inject: "true"

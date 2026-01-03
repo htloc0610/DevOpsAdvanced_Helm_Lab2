@@ -10,6 +10,8 @@ spec:
       app: vets-service
   template:
     metadata:
+      annotations:
+        proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
       labels:
         app: vets-service
         sidecar.istio.io/inject: "true"
